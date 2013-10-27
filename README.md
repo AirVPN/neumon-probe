@@ -30,30 +30,32 @@ Choose console-only, choose password.
 
 Login as root, or use sudo.
 
-  apt-get install whois curl tcpdump ntp traceroute sysstat screen unzip psmisc p7zip-full slurm wipe dnsutils conntrack
+     apt-get install whois curl tcpdump ntp traceroute sysstat screen unzip psmisc p7zip-full slurm wipe dnsutils conntrack
 
-  apt-get install mono-complete
+     apt-get install mono-complete
 
-  mkdir /home/probe
+     mkdir /home/probe
 
-  useradd -d /home/probe -m probe -p `mkpasswd cCEqW0zY1xb866HL52hw`
+     useradd -d /home/probe -m probe -p `mkpasswd MyProbeUserPassword`
 
 Copy /scripts/startup.sh to /home/probe/startup.sh
 
 Copy /scripts/resume.sh to /home/probe/resume.sh
 
-  chown probe:probe /home/probe/*
+     chown probe:probe /home/probe/*
 
-  chmod 700 /home/probe/*.sh
+     chmod 700 /home/probe/*.sh
 
 In /etc/rc.local:
 
-  su - probe -c "screen -dmS probe /home/probe/startup.sh"
+     su - probe -c "screen -dmS probe /home/probe/startup.sh"
 
 
 
 After a reboot, login and use 
 
-  /home/probe/resume.sh
+     /home/probe/resume.sh
 
 to control the execution. Exit without terminate the process with 'Ctrl-A' and 'd' keys.
+
+
