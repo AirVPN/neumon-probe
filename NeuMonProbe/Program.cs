@@ -10,19 +10,7 @@ namespace NeuMonProbe
     {                
         static void Main(string[] args)
         {
-
-			/*
-			string host = "sex.com";
-			string dns = "202.134.1.10";
-			string ip = "206.125.164.82";
-			String resolvedIP = Utils.ResolveOne(host,dns,ip);
-
-			Console.WriteLine("res:" + resolvedIP);
-
-			return;
-			*/
-
-            Options.Read();
+			Options.Read();
 
             if (args.Length != 0)
                 Options.ReadCommandLine(args);
