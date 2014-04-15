@@ -10,7 +10,7 @@ namespace NeuMonProbe
     {                
         static void Main(string[] args)
         {
-            Options.Read();
+			Options.Read();
 
             if (args.Length != 0)
                 Options.ReadCommandLine(args);

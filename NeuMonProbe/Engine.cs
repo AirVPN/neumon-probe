@@ -12,7 +12,7 @@ namespace NeuMonProbe
 {
     public class Engine
     {
-        public static string ProbeVersion = "20";
+        public static string ProbeVersion = "21";
 
         public static List<Job> JobsQueue = new List<Job>();
         public static List<Job> JobsRunning = new List<Job>();
@@ -193,7 +193,16 @@ namespace NeuMonProbe
             if (Options.GetBool("debug", false))
                 Log("Contact service: " + url);
 
-            String data = GetContentBody(GetContent(url, postData));
+			String dataFull = GetContent(url, postData);
+
+			String Http = Utils.ReadFirstLine(dataFull);
+
+			if (Http != "HTTP/1.1 200 OK")
+			{
+				throw new Exception("Unexpected HTTP response, " + Http);
+			}
+
+            String data = GetContentBody(dataFull);
 
             String serverMessage = Utils.ReadLine(ref data);            
             String status = Utils.ReadLine(ref data);

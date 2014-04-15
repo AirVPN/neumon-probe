@@ -34,6 +34,22 @@ namespace NeuMonProbe
             return line.Trim();
         }
 
+		public static string ReadFirstLine(string data)
+		{
+			string line = "";
+			int posEnd = data.IndexOf("\n");
+			if (posEnd == -1)
+			{
+				line = data;				
+			}
+			else
+			{
+				line = data.Substring(0, posEnd);
+				
+			}
+			return line.Trim();
+		}
+
         public static bool IsIP(string v)
         {
             Match match = Regex.Match(v, @"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}");
@@ -50,7 +66,9 @@ namespace NeuMonProbe
 
                 if( (Platform.IsUnix()) && (dnsServer != "") )
                 {
-                    string digCmd = "dig @" + dnsServer + " " + host + " +short +tcp";
+					// TCP have one advantage: catch long lists, but one disadvantage: not all DNS support TCP.
+                    //string digCmd = "dig @" + dnsServer + " " + host + " +short +tcp";
+					string digCmd = "dig @" + dnsServer + " " + host + " +short";
                     string digOut = Utils.Shell(digCmd);
                     
                     if (digOut.IndexOf("connection timed out") != -1)
