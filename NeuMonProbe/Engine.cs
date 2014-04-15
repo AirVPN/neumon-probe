@@ -12,7 +12,7 @@ namespace NeuMonProbe
 {
     public class Engine
     {
-        public static string ProbeVersion = "20";
+        public static string ProbeVersion = "21";
 
         public static List<Job> JobsQueue = new List<Job>();
         public static List<Job> JobsRunning = new List<Job>();

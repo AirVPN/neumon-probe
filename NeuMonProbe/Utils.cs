@@ -66,7 +66,9 @@ namespace NeuMonProbe
 
                 if( (Platform.IsUnix()) && (dnsServer != "") )
                 {
-                    string digCmd = "dig @" + dnsServer + " " + host + " +short +tcp";
+					// TCP have one advantage: catch long lists, but one disadvantage: not all DNS support TCP.
+                    //string digCmd = "dig @" + dnsServer + " " + host + " +short +tcp";
+					string digCmd = "dig @" + dnsServer + " " + host + " +short";
                     string digOut = Utils.Shell(digCmd);
                     
                     if (digOut.IndexOf("connection timed out") != -1)
